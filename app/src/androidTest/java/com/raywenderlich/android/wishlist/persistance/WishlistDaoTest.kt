@@ -83,6 +83,23 @@ class WishlistDaoTest {
 
     }
 
+    @Test
+    fun findByIdRetrievesCorrectData(){
+        // 1
+        val wishlist1 = Wishlist("Victoria", listOf(), 1)
+        val wishlist2 = Wishlist("Tyler", listOf(), 2)
+        wishlistDao.save(wishlist1, wishlist2)
+
+
+        // 2
+        val testObserver: Observer<Wishlist> = mock()
+        wishlistDao.findById(wishlist2.id).observeForever(testObserver)
+
+        verify(testObserver).onChanged(wishlist2)
+
+
+    }
+
 
     @After
     fun closeDb() {

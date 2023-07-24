@@ -42,7 +42,7 @@ interface WishlistDao {
   @Query("Select * from wishlist")
   fun getAll(): LiveData<List<Wishlist>>
 
-  @Query("SELECT * FROM wishlist where id != :id ")
+  @Query("SELECT * FROM wishlist where id = :id ")
   fun findById(id: Int): LiveData<Wishlist>
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
