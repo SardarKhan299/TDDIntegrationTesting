@@ -49,6 +49,12 @@ class DetailViewModelTest{
 
     }
 
+    @Test
+    fun getWishListCallDatabase(){
+        detailViewModel.getWishlist(1)
+        verify(wishListDao).findById(1)
+    }
+
 
 
 }
