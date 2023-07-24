@@ -45,8 +45,8 @@ class WishlistDaoTest {
     @Test
     fun saveWishlistSavesData(){
         // 1
-        val wishlist1 = Wishlist("Victoria", listOf(), 1)
-        val wishlist2 = Wishlist("Tyler", listOf(), 2)
+        val wishlist1 = WishlistFactory.makeWishlist()
+        val wishlist2 = WishlistFactory.makeWishlist()
         wishlistDao.save(wishlist1, wishlist2)
 
         // 2
@@ -65,8 +65,8 @@ class WishlistDaoTest {
     @Test
     fun getAllRetrievesData(){
         // 1
-        val wishlist1 = Wishlist("Victoria", listOf(), 1)
-        val wishlist2 = Wishlist("Tyler", listOf(), 2)
+        val wishlist1 = WishlistFactory.makeWishlist()
+        val wishlist2 = WishlistFactory.makeWishlist()
         wishlistDao.save(wishlist1, wishlist2)
 
 
@@ -86,8 +86,8 @@ class WishlistDaoTest {
     @Test
     fun findByIdRetrievesCorrectData(){
         // 1
-        val wishlist1 = Wishlist("Victoria", listOf(), 1)
-        val wishlist2 = Wishlist("Tyler", listOf(), 2)
+        val wishlist1 = WishlistFactory.makeWishlist()
+        val wishlist2 = WishlistFactory.makeWishlist()
         wishlistDao.save(wishlist1, wishlist2)
 
 
