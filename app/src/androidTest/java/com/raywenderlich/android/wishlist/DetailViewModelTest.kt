@@ -1,6 +1,7 @@
 package com.raywenderlich.android.wishlist
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.raywenderlich.android.wishlist.persistance.RepositoryImpl
 import com.raywenderlich.android.wishlist.persistance.WishlistDao
@@ -11,6 +12,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mockito
 import org.mockito.kotlin.any
+import org.mockito.kotlin.mock
 import org.mockito.kotlin.verify
 
 @RunWith(AndroidJUnit4::class)
@@ -30,4 +32,23 @@ class DetailViewModelTest{
         "Smart watch")
         verify(wishListDao).save(any())
     }
+
+    @Test
+    fun saveNewItemSavesData(){
+        // 1 \
+        val wishList = Wishlist("Victoria", listOf("RW Android Apprentice Book", "Android phone"),1)
+        val name = "Smart Watch"
+        detailViewModel.saveNewItem(wishList,name)
+
+        val mockObserver = mock<Observer<Wishlist>>()
+
+        wishListDao.findById(wishList.id)
+            .observeForever(mockObserver)
+
+        verify(mockObserver).onChanged(wishList.copy(wishes = wishList.wishes + name))
+
+    }
+
+
+
 }
