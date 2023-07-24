@@ -38,6 +38,7 @@ import com.raywenderlich.android.wishlist.persistance.Repository
 class DetailViewModel(private val repository: Repository) : ViewModel() {
 
   fun saveNewItem(wishlist: Wishlist, name: String) {
+    repository.saveWishlistItem(wishlist)
   }
 
   fun getWishlist(id: Int): LiveData<Wishlist> {
