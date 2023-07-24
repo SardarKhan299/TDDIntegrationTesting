@@ -42,6 +42,6 @@ class DetailViewModel(private val repository: Repository) : ViewModel() {
   }
 
   fun getWishlist(id: Int): LiveData<Wishlist> {
-    return MutableLiveData()
+    return repository.getWishlist(id)
   }
 }

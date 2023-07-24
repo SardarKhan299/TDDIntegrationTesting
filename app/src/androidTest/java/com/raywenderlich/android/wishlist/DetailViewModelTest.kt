@@ -55,6 +55,19 @@ class DetailViewModelTest{
         verify(wishListDao).findById(1)
     }
 
+    @Test
+    fun getWishListReturnsCorrectData(){
+        val wishList = Wishlist("Victoria", listOf("RW Android Apprentice Book", "Android phone"),1)
+        wishListDao.save(wishList)
+
+        val mockObserver = mock<Observer<Wishlist>>()
+
+        detailViewModel.getWishlist(1).observeForever(mockObserver)
+
+        verify(mockObserver).onChanged(wishList)
+
+    }
+
 
 
 }
